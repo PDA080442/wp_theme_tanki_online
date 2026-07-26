@@ -202,6 +202,31 @@ function tanki_uppercase( $text ) {
 }
 
 /**
+ * Preconnect to Google Fonts (Rubik).
+ *
+ * @param array  $urls          URLs to print for resource hints.
+ * @param string $relation_type The relation type the URLs are printed for.
+ * @return array
+ */
+function tanki_resource_hints( $urls, $relation_type ) {
+	if ( 'preconnect' !== $relation_type ) {
+		return $urls;
+	}
+
+	$urls[] = array(
+		'href' => 'https://fonts.googleapis.com',
+	);
+
+	$urls[] = array(
+		'href'        => 'https://fonts.gstatic.com',
+		'crossorigin' => 'anonymous',
+	);
+
+	return $urls;
+}
+add_filter( 'wp_resource_hints', 'tanki_resource_hints', 10, 2 );
+
+/**
  * Enqueue theme styles and scripts on the frontend.
  */
 function tanki_enqueue_assets() {

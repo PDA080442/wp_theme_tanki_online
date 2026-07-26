@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/** Posts per page on home / news archive (Load More after first page). */
+if ( ! defined( 'TANKI_FEED_POSTS_PER_PAGE' ) ) {
+	define( 'TANKI_FEED_POSTS_PER_PAGE', 12 );
+}
+
 /**
  * Adjust the main frontend query for news archive, home, and search.
  *
@@ -20,12 +25,12 @@ function tanki_modify_main_query( $query ) {
 	}
 
 	if ( $query->is_post_type_archive( 'tanki_news' ) ) {
-		$query->set( 'posts_per_page', 16 );
+		$query->set( 'posts_per_page', TANKI_FEED_POSTS_PER_PAGE );
 	}
 
 	if ( $query->is_home() ) {
 		$query->set( 'post_type', 'tanki_news' );
-		$query->set( 'posts_per_page', 16 );
+		$query->set( 'posts_per_page', TANKI_FEED_POSTS_PER_PAGE );
 	}
 
 	if ( $query->is_search() ) {

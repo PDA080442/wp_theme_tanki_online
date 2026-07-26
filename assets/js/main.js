@@ -274,4 +274,80 @@
 	if (autoSearch) {
 		openSearch();
 	}
+
+	/* —— Feed: Load more —— */
+	var loadMoreBtn = document.getElementById('tanki-load-more');
+	var feedGrid = document.querySelector('.news-feed__grid');
+	var loadMoreCfg = typeof tankiLoadMore !== 'undefined' ? tankiLoadMore : null;
+
+	if (loadMoreBtn && feedGrid && loadMoreCfg) {
+		var currentPage = parseInt(loadMoreBtn.getAttribute('data-page'), 10) || loadMoreCfg.currentPage || 1;
+		var maxPages = parseInt(loadMoreBtn.getAttribute('data-max-pages'), 10) || loadMoreCfg.maxPages || 1;
+
+		function removeLoadMore() {
+			var wrap = loadMoreBtn.closest('.news-feed__load-more');
+			if (wrap) {
+				wrap.remove();
+			} else {
+				loadMoreBtn.remove();
+			}
+		}
+
+		if (currentPage >= maxPages) {
+			removeLoadMore();
+		} else {
+			loadMoreBtn.addEventListener('click', function () {
+				if (loadMoreBtn.disabled || currentPage >= maxPages) {
+					return;
+				}
+
+				var nextPage = currentPage + 1;
+				loadMoreBtn.disabled = true;
+				loadMoreBtn.textContent = (loadMoreCfg.i18n && loadMoreCfg.i18n.loading) || 'Загрузка…';
+
+				var body = new FormData();
+				body.append('action', 'tanki_load_more');
+				body.append('nonce', loadMoreCfg.nonce);
+				body.append('page', String(nextPage));
+
+				fetch(loadMoreCfg.ajaxUrl, {
+					method: 'POST',
+					credentials: 'same-origin',
+					body: body
+				})
+					.then(function (response) {
+						return response.json();
+					})
+					.then(function (payload) {
+						if (!payload || !payload.success || !payload.data) {
+							throw new Error('load more failed');
+						}
+
+						if (payload.data.html) {
+							feedGrid.insertAdjacentHTML('beforeend', payload.data.html);
+						}
+
+						currentPage = nextPage;
+						loadMoreBtn.setAttribute('data-page', String(currentPage));
+
+						if (payload.data.maxPages) {
+							maxPages = parseInt(payload.data.maxPages, 10) || maxPages;
+							loadMoreBtn.setAttribute('data-max-pages', String(maxPages));
+						}
+
+						if (payload.data.done || currentPage >= maxPages) {
+							removeLoadMore();
+							return;
+						}
+
+						loadMoreBtn.disabled = false;
+						loadMoreBtn.textContent = (loadMoreCfg.i18n && loadMoreCfg.i18n.loadMore) || 'Загрузить ещё';
+					})
+					.catch(function () {
+						loadMoreBtn.disabled = false;
+						loadMoreBtn.textContent = (loadMoreCfg.i18n && loadMoreCfg.i18n.loadMore) || 'Загрузить ещё';
+					});
+			});
+		}
+	}
 })();

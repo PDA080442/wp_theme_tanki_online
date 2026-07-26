@@ -216,6 +216,28 @@ a:hover {
 	color: var(--tanki-accent);
 }
 
+.site-header__menu-toggle:hover,
+.site-header__menu-toggle:focus-visible {
+	background: radial-gradient(100% 100% at 50% 100%, rgba(118, 255, 51, 0.12) 0%, transparent 70%);
+}
+
+.site-header__menu-toggle:focus-visible,
+.site-header__open-search:focus-visible,
+.site-header__help:focus-visible {
+	outline: 2px solid var(--tanki-accent);
+	outline-offset: -2px;
+}
+
+.site-header.is-menu-open .site-header__icon--menu {
+	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2'%3E%3Cpath d='M6 6l12 12M18 6L6 18'/%3E%3C/svg%3E") center / contain no-repeat;
+	-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2'%3E%3Cpath d='M6 6l12 12M18 6L6 18'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+html.is-menu-open,
+html.is-menu-open body {
+	overflow: hidden;
+}
+
 .site-header__promo {
 	display: none;
 	align-items: center;
@@ -330,6 +352,18 @@ a:hover {
 	color: var(--tanki-text);
 	text-decoration: none;
 	background: radial-gradient(100% 100% at 50% 100%, rgba(191, 213, 255, 0.12) 0%, rgba(191, 213, 255, 0) 100%);
+}
+
+.site-nav__link:focus-visible,
+.site-nav__list a:focus-visible {
+	outline: 2px solid var(--tanki-accent);
+	outline-offset: -2px;
+	text-decoration: none;
+}
+
+.site-nav--external .site-nav__link:focus-visible,
+.site-nav--external .site-nav__list a:focus-visible {
+	outline-offset: 2px;
 }
 
 .site-nav--primary .site-nav__list .current-menu-item > a,
@@ -488,6 +522,10 @@ a:hover {
 
 .site-header__open-search:hover {
 	opacity: 0.75;
+}
+
+.site-header__open-search:focus-visible {
+	opacity: 1;
 }
 
 html.is-search-open,
@@ -1363,10 +1401,12 @@ html.is-search-open body {
 	.site-header.is-menu-open .site-nav--primary,
 	.site-header.is-menu-open .site-nav--external {
 		display: block;
+		background: var(--tanki-bg);
 	}
 
 	.site-header.is-menu-open .site-nav--external {
 		border-top: 0;
+		padding: 0 0 0.5rem;
 	}
 
 	.site-header.is-menu-open .site-nav__list {
@@ -1375,10 +1415,18 @@ html.is-search-open body {
 		height: auto;
 	}
 
+	.site-nav__item,
+	.site-nav__list > li {
+		height: auto;
+	}
+
 	.site-nav__link,
 	.site-nav__list a {
 		justify-content: flex-start;
 		min-width: 0;
+		width: 100%;
+		height: auto;
+		min-height: 2.75rem;
 		padding: 0.9rem 1rem;
 		border-right: 0;
 		border-left: 0;
@@ -1387,6 +1435,8 @@ html.is-search-open body {
 
 	.site-nav--external .site-nav__link,
 	.site-nav--external .site-nav__list a {
+		padding: 0.9rem 1rem;
+		height: auto;
 		border-left: 0;
 	}
 

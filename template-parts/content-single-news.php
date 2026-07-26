@@ -22,6 +22,9 @@ if ( '' === $badge ) {
 		$badge = tanki_get_demo_news_content_data()[ $demo_slug ]['badge'];
 	}
 }
+
+$type_label = tanki_get_news_type_label();
+$post_ts    = get_post_timestamp();
 ?>
 <section class="post-single">
 	<?php if ( $thumb_url ) : ?>
@@ -70,7 +73,14 @@ if ( '' === $badge ) {
 		<h1><?php the_title(); ?></h1>
 
 		<div class="info">
-			<div class="date"><?php echo esc_html( tanki_get_news_date_label() ); ?></div>
+			<?php if ( false !== $post_ts ) : ?>
+				<time class="post-single__date" datetime="<?php echo esc_attr( wp_date( 'c', $post_ts ) ); ?>">
+					<?php echo esc_html( tanki_get_news_date_label() ); ?>
+				</time>
+			<?php endif; ?>
+			<?php if ( '' !== $type_label ) : ?>
+				<span class="post-single__type"><?php echo esc_html( $type_label ); ?></span>
+			<?php endif; ?>
 		</div>
 	</div>
 

@@ -42,25 +42,11 @@ ln -s "/path/to/wp_theme_tanki_online" \
 
 Подставь свой путь к клону репозитория вместо `/path/to/wp_theme_tanki_online`.
 
-## Локальные URL (пример Local)
-
-| Страница | URL |
-|----------|-----|
-| Главная | http://tanki-online-news.local/ |
-| Админка | http://tanki-online-news.local/wp-admin |
-| Архив новостей | http://tanki-online-news.local/news/ |
-| Одна новость | http://tanki-online-news.local/news/{slug}/ |
-| Поиск | http://tanki-online-news.local/?s=запрос |
-
-После установки темы обязательно: **Настройки → Постоянные ссылки → Сохранить** (чтобы `/news/` не отдавал 404).
 
 Меню шапки: **Внешний вид → Меню** — назначь меню в области **«Главное меню (слева)»** и **«Внешние ссылки (справа)»**. Пока не назначено, показываются запасные пункты.
 
 Футер: меню в области **«Меню футера»**; картинки маскота и логотипа партнёра — **Внешний вид → Настроить → Футер**.
 
-## Design tokens
-
-Визуальная система темы задана CSS-переменными в [`assets/css/main.css`](assets/css/main.css) (`:root`). Референс: [tankionline.com/ru/news](https://tankionline.com/ru/news/).
 
 ### Цвета
 
@@ -72,7 +58,7 @@ ln -s "/path/to/wp_theme_tanki_online" \
 | `--tanki-card-bg-alt` | `#0a3040` | градиент placeholder |
 | `--tanki-text` | `#ffffff` | основной текст |
 | `--tanki-muted` / `--tanki-meta` | `#9bb0ba` | дата, метки типов, вторичный текст |
-| `--tanki-meta-feed` | `rgba(255,255,255,.5)` | мета в карточках ленты (как референс) |
+| `--tanki-meta-feed` | `rgba(255,255,255,.5)` | мета в карточках ленты |
 | `--tanki-accent` / `--tanki-link` | `#76ff33` | акцент, ссылки, CTA |
 | `--tanki-on-accent` | `#001926` | текст на зелёном фоне |
 | `--tanki-border` | `rgba(255,255,255,.25)` | разделители |
@@ -85,9 +71,9 @@ ln -s "/path/to/wp_theme_tanki_online" \
 
 ### Шрифт
 
-- **Rubik** (Google Fonts), веса 400 / 500 / 700
+- **Rubik** (Google Fonts), 400 / 500 / 700
 - `--tanki-font-weight-normal`, `--medium`, `--bold`
-- Fluid `html { font-size }` масштабирует rem под viewport (как на референсе)
+- Fluid `html { font-size }` масштабирует rem под viewport 
 
 ### Типографическая шкала
 
@@ -140,19 +126,3 @@ wp_theme_tanki_online/
 │   └── customizer.php   # картинки футера (маскот, логотип партнёра)
 └── docs/
 ```
-
-## Документация
-
-- Эпик окружения: [`docs/Theme_environment_and_frame/`](docs/Theme_environment_and_frame/)
-- CPT и таксономии: [`docs/Custom_post_type_and_taxonomies/`](docs/Custom_post_type_and_taxonomies/)
-- Шапка / футер / поиск: [`docs/Header_footer_search/`](docs/Header_footer_search/)
-- Лента новостей: [`docs/News_feed_archive_home/`](docs/News_feed_archive_home/)
-
-## Статус
-
-- [x] Каркас темы, стили, README
-- [x] Кастомный тип записи «Новости» (`tanki_news`, архив `/news/`)
-- [x] Таксономия типов (Новость / Видео)
-- [x] Лента: `/` и `/news/`, сетка **3** колонки (desktop, как референс), **12** на страницу + «Загрузить ещё» (демо 16)
-- [x] Шапка / футер / поиск
-- [ ] Single, «Загрузить ещё», polish

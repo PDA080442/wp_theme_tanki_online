@@ -925,6 +925,7 @@ html.is-search-open body {
 	height: 100%;
 	object-fit: cover;
 	pointer-events: none;
+	transition: filter 0.15s ease;
 }
 
 .news-card__placeholder {
@@ -934,6 +935,7 @@ html.is-search-open body {
 	background:
 		radial-gradient(circle at 30% 30%, rgba(118, 255, 51, 0.25), transparent 55%),
 		linear-gradient(145deg, #0a3040, #001926 70%);
+	transition: filter 0.15s ease;
 }
 
 .news-card__link:hover .news-card__image {
@@ -945,6 +947,12 @@ html.is-search-open body {
 	transform: translate(-50%, -50%) scaleX(1.04) scaleY(1.02);
 	border-color: var(--tanki-accent);
 	border-radius: 1rem;
+}
+
+.news-card__link:hover .news-card__img,
+.news-card__link:hover .news-card__image-wrap .wp-post-image,
+.news-card__link:hover .news-card__placeholder {
+	filter: brightness(0.92);
 }
 
 .news-card__meta {

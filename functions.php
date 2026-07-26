@@ -103,3 +103,5 @@ function tanki_enqueue_assets() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'tanki_enqueue_assets' );
+
+require_once TANKI_THEME_DIR . '/inc/cpt.php';

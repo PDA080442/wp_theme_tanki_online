@@ -44,9 +44,15 @@ ln -s "/path/to/wp_theme_tanki_online" \
 
 ## Локальные URL (пример Local)
 
+| Страница | URL |
+|----------|-----|
+| Главная | http://tanki-online-news.local/ |
+| Админка | http://tanki-online-news.local/wp-admin |
+| Архив новостей | http://tanki-online-news.local/news/ |
+| Одна новость | http://tanki-online-news.local/news/{slug}/ |
+| Поиск | http://tanki-online-news.local/?s=запрос |
 
-Сайт: http://tanki-online-news.local
-Админка: http://tanki-online-news.local/wp-admin
+После установки темы обязательно: **Настройки → Постоянные ссылки → Сохранить** (чтобы `/news/` не отдавал 404).
 
 ## Структура темы
 
@@ -64,7 +70,8 @@ wp_theme_tanki_online/
 ├── template-parts/
 ├── inc/
 │   ├── cpt.php          # кастомный тип записи «Новости» (tanki_news)
-│   └── taxonomies.php   # таксономия типов (Новость / Видео)
+│   ├── taxonomies.php   # таксономия типов (Новость / Видео)
+│   └── query.php        # архив /news/ (12 постов) и лента на главной
 └── docs/
 ```
 
@@ -78,4 +85,5 @@ wp_theme_tanki_online/
 - [x] Каркас темы, стили, README
 - [x] Кастомный тип записи «Новости» (`tanki_news`, архив `/news/`)
 - [x] Таксономия типов (Новость / Видео)
+- [x] Архив и ЧПУ: 12 постов на странице, главная = `tanki_news`
 - [ ] 16 постов, лента, поиск, шапка, футер

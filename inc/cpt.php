@@ -55,6 +55,7 @@ function tanki_register_news_post_type() {
 		'menu_position'      => 5,
 		'menu_icon'          => 'dashicons-megaphone',
 		'capability_type'    => 'post',
+		'map_meta_cap'       => true,
 		'hierarchical'       => false,
 		'rewrite'            => array(
 			'slug'       => 'news',

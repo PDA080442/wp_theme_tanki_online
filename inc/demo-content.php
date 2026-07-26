@@ -642,16 +642,18 @@ function tanki_render_demo_news_tools_page() {
 		$replace = ! empty( $_POST['tanki_replace_all'] );
 		$stats   = tanki_seed_demo_news( $replace );
 		$message = sprintf(
-			/* translators: 1: created count, 2: updated count */
-			__( 'Готово: создано %1$d, обновлено %2$d.', 'tanki-online-news' ),
+			/* translators: 1: created count, 2: updated count, 3: skipped count */
+			__( 'Готово: создано %1$d, обновлено %2$d, пропущено %3$d.', 'tanki-online-news' ),
 			(int) $stats['created'],
-			(int) $stats['updated']
+			(int) $stats['updated'],
+			(int) $stats['skipped']
 		);
 	}
 	?>
 	<div class="wrap">
 		<h1><?php esc_html_e( 'Демо-новости', 'tanki-online-news' ); ?></h1>
-		<p><?php esc_html_e( 'Загружает 16 новостей с обложками и контентом по структуре референса (callout, feature-блок, кнопка форума). Повторный запуск обновит текст у существующих демо-постов.', 'tanki-online-news' ); ?></p>
+		<p><?php esc_html_e( 'Загружает 16 новостей с обложками и контентом по структуре референса (callout, feature-блок, кнопка форума). Повторный запуск обновит существующие демо-посты по slug — дубликаты не создаются.', 'tanki-online-news' ); ?></p>
+		<p><strong><?php esc_html_e( 'Внимание:', 'tanki-online-news' ); ?></strong> <?php esc_html_e( 'опция «Удалить все текущие новости» удалит каждую запись tanki_news, в том числе созданную вручную, а не только демо.', 'tanki-online-news' ); ?></p>
 		<?php if ( $message ) : ?>
 			<div class="notice notice-success is-dismissible"><p><?php echo esc_html( $message ); ?></p></div>
 		<?php endif; ?>

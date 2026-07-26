@@ -70,13 +70,33 @@ wp_theme_tanki_online/
 ├── screenshot.png
 ├── assets/
 │   ├── css/
-│   └── js/
+│   ├── js/
+│   ├── img/
+│   └── demo/news/       # 16 обложек демо-ленты
 ├── template-parts/
 ├── inc/
 │   ├── cpt.php          # кастомный тип записи «Новости» (tanki_news)
 │   ├── taxonomies.php   # таксономия типов (Новость / Видео)
-│   ├── query.php        # архив /news/ (12 постов) и лента на главной
+│   ├── query.php        # архив /news/ и главная: 16 постов tanki_news
 │   ├── search.php       # AJAX-поиск по tanki_news
+│   ├── admin-duplicate.php # «Дублировать» новость в админке
+│   ├── demo-content.php # сидер 16 демо-новостей с обложками
 │   └── customizer.php   # картинки футера (маскот, логотип партнёра)
 └── docs/
 ```
+
+## Документация
+
+- Эпик окружения: [`docs/Theme_environment_and_frame/`](docs/Theme_environment_and_frame/)
+- CPT и таксономии: [`docs/Custom_post_type_and_taxonomies/`](docs/Custom_post_type_and_taxonomies/)
+- Шапка / футер / поиск: [`docs/Header_footer_search/`](docs/Header_footer_search/)
+- Лента новостей: [`docs/News_feed_archive_home/`](docs/News_feed_archive_home/)
+
+## Статус
+
+- [x] Каркас темы, стили, README
+- [x] Кастомный тип записи «Новости» (`tanki_news`, архив `/news/`)
+- [x] Таксономия типов (Новость / Видео)
+- [x] Лента: `/` и `/news/`, сетка карточек, **16** постов на страницу
+- [x] Шапка / футер / поиск
+- [ ] Single, «Загрузить ещё», polish

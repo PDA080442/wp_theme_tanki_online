@@ -277,12 +277,14 @@
 
 	/* —— Feed: Load more —— */
 	var loadMoreBtn = document.getElementById('tanki-load-more');
+	var feedSection = document.querySelector('.news-feed');
 	var feedGrid = document.querySelector('.news-feed__grid');
 	var loadMoreCfg = typeof tankiLoadMore !== 'undefined' ? tankiLoadMore : null;
 
 	if (loadMoreBtn && feedGrid && loadMoreCfg) {
 		var currentPage = parseInt(loadMoreBtn.getAttribute('data-page'), 10) || loadMoreCfg.currentPage || 1;
 		var maxPages = parseInt(loadMoreBtn.getAttribute('data-max-pages'), 10) || loadMoreCfg.maxPages || 1;
+		var newsType = loadMoreBtn.getAttribute('data-news-type') || (feedSection && feedSection.getAttribute('data-news-type')) || loadMoreCfg.newsType || 'all';
 
 		function removeLoadMore() {
 			var wrap = loadMoreBtn.closest('.news-feed__load-more');
@@ -309,6 +311,9 @@
 				body.append('action', 'tanki_load_more');
 				body.append('nonce', loadMoreCfg.nonce);
 				body.append('page', String(nextPage));
+				if (newsType && newsType !== 'all') {
+					body.append('news_type', newsType);
+				}
 
 				fetch(loadMoreCfg.ajaxUrl, {
 					method: 'POST',

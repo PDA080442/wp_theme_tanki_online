@@ -15,20 +15,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 function tanki_ajax_load_more_news() {
 	check_ajax_referer( 'tanki_load_more', 'nonce' );
 
-	$page = isset( $_POST['page'] ) ? absint( $_POST['page'] ) : 0;
+	$page = isset( $_POST['page'] ) ? absint( $_POST['page'] ) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 	if ( $page < 2 ) {
 		wp_send_json_error( array( 'message' => 'Invalid page' ), 400 );
 	}
 
-	$query = new WP_Query(
-		array(
-			'post_type'           => 'tanki_news',
-			'post_status'         => 'publish',
-			'posts_per_page'      => defined( 'TANKI_FEED_POSTS_PER_PAGE' ) ? TANKI_FEED_POSTS_PER_PAGE : 12,
-			'paged'               => $page,
-			'ignore_sticky_posts' => true,
-		)
-	);
+	$news_type = isset( $_POST['news_type'] ) ? sanitize_title( wp_unslash( $_POST['news_type'] ) ) : 'all'; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+
+	$query = new WP_Query( tanki_get_feed_query_args( $page, $news_type ) );
 
 	if ( ! $query->have_posts() ) {
 		wp_send_json_success(

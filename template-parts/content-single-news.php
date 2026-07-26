@@ -89,4 +89,5 @@ $post_ts    = get_post_timestamp();
 	</div>
 </section>
 
+<?php get_template_part( 'template-parts/content', 'single-news-nav' ); ?>
 <?php get_template_part( 'template-parts/content', 'related-news' ); ?>

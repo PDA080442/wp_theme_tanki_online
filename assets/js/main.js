@@ -355,4 +355,71 @@
 			});
 		}
 	}
+
+	/* Horizontal card carousels (related news on single post). */
+
+	var carousels = document.querySelectorAll('[data-tanki-carousel]');
+
+	Array.prototype.forEach.call(carousels, function (carousel) {
+		var track = carousel.querySelector('[data-tanki-carousel-track]');
+		var prevBtn = carousel.querySelector('[data-tanki-carousel-prev]');
+		var nextBtn = carousel.querySelector('[data-tanki-carousel-next]');
+
+		if (!track) {
+			return;
+		}
+
+		function stepSize() {
+			var card = track.querySelector('.news-card');
+			var gap = parseFloat(window.getComputedStyle(track).columnGap) || 16;
+
+			if (!card) {
+				return Math.round(track.clientWidth * 0.8);
+			}
+
+			return Math.round(card.getBoundingClientRect().width + gap);
+		}
+
+		/* Align the round buttons with the middle of the card artwork. */
+		function syncButtonOffset() {
+			var image = track.querySelector('.news-card__image');
+
+			if (image) {
+				carousel.style.setProperty('--related-image-height', image.getBoundingClientRect().height + 'px');
+			}
+		}
+
+		function syncButtons() {
+			var maxScroll = track.scrollWidth - track.clientWidth;
+
+			if (prevBtn) {
+				prevBtn.classList.toggle('is-disabled', track.scrollLeft <= 1);
+			}
+
+			if (nextBtn) {
+				nextBtn.classList.toggle('is-disabled', track.scrollLeft >= maxScroll - 1);
+			}
+		}
+
+		if (prevBtn) {
+			prevBtn.addEventListener('click', function () {
+				track.scrollLeft -= stepSize();
+			});
+		}
+
+		if (nextBtn) {
+			nextBtn.addEventListener('click', function () {
+				track.scrollLeft += stepSize();
+			});
+		}
+
+		track.addEventListener('scroll', syncButtons);
+		window.addEventListener('resize', function () {
+			syncButtonOffset();
+			syncButtons();
+		});
+		window.addEventListener('load', syncButtonOffset);
+		syncButtonOffset();
+		syncButtons();
+	});
 })();

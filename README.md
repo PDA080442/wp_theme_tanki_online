@@ -76,25 +76,7 @@ wp_theme_tanki_online/
 │   ├── cpt.php          # кастомный тип записи «Новости» (tanki_news)
 │   ├── taxonomies.php   # таксономия типов (Новость / Видео)
 │   ├── query.php        # архив /news/ (12 постов) и лента на главной
+│   ├── search.php       # AJAX-поиск по tanki_news
 │   └── customizer.php   # картинки футера (маскот, логотип партнёра)
 └── docs/
 ```
-
-## Документация
-
-- Эпик окружения: [`docs/Theme_environment_and_frame/`](docs/Theme_environment_and_frame/)
-- CPT и таксономии: [`docs/Custom_post_type_and_taxonomies/`](docs/Custom_post_type_and_taxonomies/)
-- Шапка / футер / поиск: [`docs/Header_footer_search/`](docs/Header_footer_search/)
-- Лента новостей: [`docs/News_feed_archive_home/`](docs/News_feed_archive_home/)
-
-## Статус
-
-- [x] Каркас темы, стили, README
-- [x] Кастомный тип записи «Новости» (`tanki_news`, архив `/news/`)
-- [x] Таксономия типов (Новость / Видео)
-- [x] Архив и ЧПУ: 12 постов на странице, главная = `tanki_news`
-- [x] CRUD / права CPT: чеклист в [`docs/.../Checking_CRUD_and_access_rights/`](docs/Custom_post_type_and_taxonomies/Checking_CRUD_and_access_rights/)
-- [x] Шапка: топбар + поиск по центру (как на референсе)
-- [x] Лента: сетка карточек 3 колонки (`home.php` / `archive-tanki_news.php`)
-- [x] Футер: два ряда, меню из админки, картинки в Customizer
-- [ ] Страница поиска, 16 постов, polish

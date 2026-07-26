@@ -90,10 +90,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div>
 
 	<div class="site-header__search-row">
-		<div class="site-header__search" id="site-header-search">
-			<?php get_search_form(); ?>
-		</div>
+		<button
+			type="button"
+			class="site-header__open-search"
+			id="tanki-open-search"
+			aria-controls="tanki-search-popup"
+			aria-expanded="false"
+		>
+			<span class="site-header__open-search-label"><?php esc_html_e( 'Найти новость', 'tanki-online-news' ); ?></span>
+		</button>
 	</div>
 </header>
+
+<?php get_template_part( 'template-parts/search', 'overlay' ); ?>
 
 <main class="site-main" id="main">

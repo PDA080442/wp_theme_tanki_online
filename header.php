@@ -81,7 +81,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 					id="site-menu-toggle"
 					aria-controls="site-nav"
 					aria-expanded="false"
-					aria-label="<?php esc_attr_e( 'Open menu', 'tanki-online-news' ); ?>"
+					aria-label="<?php esc_attr_e( 'Открыть меню', 'tanki-online-news' ); ?>"
+					data-label-open="<?php esc_attr_e( 'Открыть меню', 'tanki-online-news' ); ?>"
+					data-label-close="<?php esc_attr_e( 'Закрыть меню', 'tanki-online-news' ); ?>"
 				>
 					<span class="site-header__icon site-header__icon--menu" aria-hidden="true"></span>
 				</button>

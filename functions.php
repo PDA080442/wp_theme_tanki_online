@@ -63,19 +63,122 @@ function tanki_setup() {
 	);
 
 	set_post_thumbnail_size( 1200, 630, true );
-	add_image_size( 'news-card', 400, 260, true );
+	add_image_size( 'news-card', 640, 400, true );
 	add_image_size( 'news-single', 1200, 630, true );
+
+	register_nav_menus(
+		array(
+			'primary'  => __( 'Главное меню (слева)', 'tanki-online-news' ),
+			'external' => __( 'Внешние ссылки (справа)', 'tanki-online-news' ),
+		)
+	);
 }
 add_action( 'after_setup_theme', 'tanki_setup' );
+
+/**
+ * Fallback for the primary menu location (Новости / Скины / Медиа).
+ * Used only when no menu is assigned in Appearance → Menus.
+ */
+function tanki_primary_menu_fallback() {
+	$news_url = get_post_type_archive_link( 'tanki_news' );
+	if ( ! $news_url ) {
+		$news_url = home_url( '/' );
+	}
+
+	$is_news = is_post_type_archive( 'tanki_news' ) || is_singular( 'tanki_news' ) || is_home() || is_front_page();
+
+	$items = array(
+		array(
+			'label'   => __( 'Новости', 'tanki-online-news' ),
+			'url'     => $news_url,
+			'current' => $is_news,
+		),
+		array(
+			'label'   => __( 'Скины', 'tanki-online-news' ),
+			'url'     => '#',
+			'current' => false,
+		),
+		array(
+			'label'   => __( 'Медиа', 'tanki-online-news' ),
+			'url'     => '#',
+			'current' => false,
+		),
+	);
+	?>
+	<ul class="site-nav__list">
+		<?php foreach ( $items as $item ) : ?>
+			<li class="site-nav__item<?php echo $item['current'] ? ' current-menu-item' : ''; ?>">
+				<a class="site-nav__link" href="<?php echo esc_url( $item['url'] ); ?>"<?php echo $item['current'] ? ' aria-current="page"' : ''; ?>>
+					<?php echo esc_html( $item['label'] ); ?>
+				</a>
+			</li>
+		<?php endforeach; ?>
+	</ul>
+	<?php
+}
+
+/**
+ * Fallback for the external menu location (Киберспорт / Вики / Форум).
+ * Used only when no menu is assigned in Appearance → Menus.
+ */
+function tanki_external_menu_fallback() {
+	$items = array(
+		__( 'Киберспорт', 'tanki-online-news' ),
+		__( 'Вики', 'tanki-online-news' ),
+		__( 'Форум', 'tanki-online-news' ),
+	);
+	?>
+	<ul class="site-nav__list site-nav__list--external">
+		<?php foreach ( $items as $label ) : ?>
+			<li class="site-nav__item">
+				<a class="site-nav__link site-nav__link--external" href="#">
+					<?php echo esc_html( $label ); ?>
+				</a>
+			</li>
+		<?php endforeach; ?>
+	</ul>
+	<?php
+}
+
+/**
+ * Format a post date like the reference: «23 ИЮЛЯ, 2026».
+ *
+ * @param int|null $post_id Post ID.
+ * @return string
+ */
+function tanki_get_news_date_label( $post_id = null ) {
+	return tanki_uppercase( get_the_date( 'j F, Y', $post_id ) );
+}
+
+/**
+ * Uppercase helper with mbstring fallback.
+ *
+ * @param string $text Text to transform.
+ * @return string
+ */
+function tanki_uppercase( $text ) {
+	if ( function_exists( 'mb_strtoupper' ) ) {
+		return mb_strtoupper( $text, 'UTF-8' );
+	}
+
+	return strtoupper( $text );
+}
 
 /**
  * Enqueue theme styles and scripts on the frontend.
  */
 function tanki_enqueue_assets() {
 	wp_enqueue_style(
+		'tanki-fonts',
+		'https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap',
+		array(),
+		null
+	);
+
+	wp_enqueue_style(
 		'tanki-style',
 		get_stylesheet_uri(),
-		array(),
+		array( 'tanki-fonts' ),
 		tanki_asset_version( 'style.css' )
 	);
 

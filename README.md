@@ -54,6 +54,8 @@ ln -s "/path/to/wp_theme_tanki_online" \
 
 После установки темы обязательно: **Настройки → Постоянные ссылки → Сохранить** (чтобы `/news/` не отдавал 404).
 
+Меню шапки: **Внешний вид → Меню** — назначь меню в области **«Главное меню (слева)»** и **«Внешние ссылки (справа)»**. Пока не назначено, показываются запасные пункты.
+
 ## Структура темы
 
 ```
@@ -79,6 +81,8 @@ wp_theme_tanki_online/
 
 - Эпик окружения: [`docs/Theme_environment_and_frame/`](docs/Theme_environment_and_frame/)
 - CPT и таксономии: [`docs/Custom_post_type_and_taxonomies/`](docs/Custom_post_type_and_taxonomies/)
+- Шапка / футер / поиск: [`docs/Header_footer_search/`](docs/Header_footer_search/)
+- Лента новостей: [`docs/News_feed_archive_home/`](docs/News_feed_archive_home/)
 
 ## Статус
 
@@ -87,4 +91,6 @@ wp_theme_tanki_online/
 - [x] Таксономия типов (Новость / Видео)
 - [x] Архив и ЧПУ: 12 постов на странице, главная = `tanki_news`
 - [x] CRUD / права CPT: чеклист в [`docs/.../Checking_CRUD_and_access_rights/`](docs/Custom_post_type_and_taxonomies/Checking_CRUD_and_access_rights/)
-- [ ] 16 постов, лента, поиск, шапка, футер
+- [x] Шапка: топбар + поиск по центру (как на референсе)
+- [x] Лента: сетка карточек 3 колонки (`home.php` / `archive-tanki_news.php`)
+- [ ] Футер, страница поиска, 16 постов, polish

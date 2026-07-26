@@ -58,6 +58,59 @@ ln -s "/path/to/wp_theme_tanki_online" \
 
 Футер: меню в области **«Меню футера»**; картинки маскота и логотипа партнёра — **Внешний вид → Настроить → Футер**.
 
+## Design tokens
+
+Визуальная система темы задана CSS-переменными в [`assets/css/main.css`](assets/css/main.css) (`:root`). Референс: [tankionline.com/ru/news](https://tankionline.com/ru/news/).
+
+### Цвета
+
+| Токен | Значение | Использование |
+|-------|----------|---------------|
+| `--tanki-bg` | `#001926` | базовый фон страницы |
+| `--tanki-surface` | `#012233` | панели, превью single, футер |
+| `--tanki-card-bg` | `#0a2a38` | фон карточек, image-wrap |
+| `--tanki-card-bg-alt` | `#0a3040` | градиент placeholder |
+| `--tanki-text` | `#ffffff` | основной текст |
+| `--tanki-muted` / `--tanki-meta` | `#9bb0ba` | дата, метки типов, вторичный текст |
+| `--tanki-accent` / `--tanki-link` | `#76ff33` | акцент, ссылки, CTA |
+| `--tanki-on-accent` | `#001926` | текст на зелёном фоне |
+| `--tanki-border` | `rgba(255,255,255,.25)` | разделители |
+| `--tanki-border-strong` | `rgba(255,255,255,.5)` | outline кнопок |
+| `--tanki-border-subtle` | `rgba(255,255,255,.15)` | тонкие границы карточек |
+| `--tanki-overlay` | `rgba(0,0,0,.95)` | модалка поиска |
+| `--tanki-surface-elevated` | `#414965` | выпадающие меню |
+| `--tanki-fill-light` | `#ffffff` | белая подложка pill-кнопок |
+
+### Шрифт
+
+- **Rubik** (Google Fonts), веса 400 / 500 / 700
+- `--tanki-font-weight-normal`, `--medium`, `--bold`
+- Fluid `html { font-size }` масштабирует rem под viewport (как на референсе)
+
+### Типографическая шкала
+
+| Токен | rem | Назначение |
+|-------|-----|------------|
+| `--tanki-text-xs` | 0.75 | мета, метки типов |
+| `--tanki-text-sm` | 0.875 | кнопки, вторичный текст |
+| `--tanki-text-base` | 1 | body |
+| `--tanki-text-lg` | 1.125 | заголовки карточек, h3 |
+| `--tanki-text-xl` | 1.5 | h2 в prose, mobile h1 |
+| `--tanki-text-2xl` | 2.25 | h1 single |
+| `--tanki-text-display` | clamp | заголовки разделов |
+
+Line-height: `--tanki-leading-tight` (1.2), `--tanki-leading-normal` (1.5), `--tanki-leading-snug` (1.22), `--tanki-leading-prose` (1.625).
+
+### Кнопки и ссылки
+
+- **Ссылки:** `color: var(--tanki-link)`, hover — underline
+- **Primary:** фон `--tanki-accent`, текст `--tanki-on-accent` (help CTA, menu toggle)
+- **Outline:** прозрачный фон, текст `--tanki-accent`, border `--tanki-border-strong` (forum-link, «Загрузить ещё», nav CTA)
+
+### Фон
+
+`body` использует многослойный radial-gradient на токенах (`--tanki-accent-glow`, `--tanki-glow-cyan`) поверх `--tanki-bg` — не плоский одноцветный фон.
+
 ## Структура темы
 
 ```

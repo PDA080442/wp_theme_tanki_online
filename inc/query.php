@@ -20,11 +20,12 @@ function tanki_modify_main_query( $query ) {
 	}
 
 	if ( $query->is_post_type_archive( 'tanki_news' ) ) {
-		$query->set( 'posts_per_page', 12 );
+		$query->set( 'posts_per_page', 16 );
 	}
 
 	if ( $query->is_home() ) {
 		$query->set( 'post_type', 'tanki_news' );
+		$query->set( 'posts_per_page', 16 );
 	}
 
 	if ( $query->is_search() ) {

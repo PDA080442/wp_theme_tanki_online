@@ -44,9 +44,15 @@ ln -s "/path/to/wp_theme_tanki_online" \
 
 ## Локальные URL (пример Local)
 
+| Страница | URL |
+|----------|-----|
+| Главная | http://tanki-online-news.local/ |
+| Админка | http://tanki-online-news.local/wp-admin |
+| Архив новостей | http://tanki-online-news.local/news/ |
+| Одна новость | http://tanki-online-news.local/news/{slug}/ |
+| Поиск | http://tanki-online-news.local/?s=запрос |
 
-Сайт: http://tanki-online-news.local
-Админка: http://tanki-online-news.local/wp-admin
+После установки темы обязательно: **Настройки → Постоянные ссылки → Сохранить** (чтобы `/news/` не отдавал 404).
 
 ## Структура темы
 
@@ -63,5 +69,22 @@ wp_theme_tanki_online/
 │   └── js/
 ├── template-parts/
 ├── inc/
+│   ├── cpt.php          # кастомный тип записи «Новости» (tanki_news)
+│   ├── taxonomies.php   # таксономия типов (Новость / Видео)
+│   └── query.php        # архив /news/ (12 постов) и лента на главной
 └── docs/
 ```
+
+## Документация
+
+- Эпик окружения: [`docs/Theme_environment_and_frame/`](docs/Theme_environment_and_frame/)
+- CPT и таксономии: [`docs/Custom_post_type_and_taxonomies/`](docs/Custom_post_type_and_taxonomies/)
+
+## Статус
+
+- [x] Каркас темы, стили, README
+- [x] Кастомный тип записи «Новости» (`tanki_news`, архив `/news/`)
+- [x] Таксономия типов (Новость / Видео)
+- [x] Архив и ЧПУ: 12 постов на странице, главная = `tanki_news`
+- [x] CRUD / права CPT: чеклист в [`docs/.../Checking_CRUD_and_access_rights/`](docs/Custom_post_type_and_taxonomies/Checking_CRUD_and_access_rights/)
+- [ ] 16 постов, лента, поиск, шапка, футер

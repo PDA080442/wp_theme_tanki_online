@@ -242,6 +242,25 @@ function tanki_enqueue_assets() {
 				),
 			)
 		);
+
+		$load_more = array(
+			'ajaxUrl'     => admin_url( 'admin-ajax.php' ),
+			'nonce'       => wp_create_nonce( 'tanki_load_more' ),
+			'currentPage' => 1,
+			'maxPages'    => 1,
+			'i18n'        => array(
+				'loadMore' => __( 'Загрузить ещё', 'tanki-online-news' ),
+				'loading'  => __( 'Загрузка…', 'tanki-online-news' ),
+			),
+		);
+
+		if ( ! is_admin() && ( is_home() || is_post_type_archive( 'tanki_news' ) ) ) {
+			global $wp_query;
+			$load_more['currentPage'] = max( 1, (int) get_query_var( 'paged' ), (int) get_query_var( 'page' ) );
+			$load_more['maxPages']    = isset( $wp_query->max_num_pages ) ? (int) $wp_query->max_num_pages : 1;
+		}
+
+		wp_localize_script( 'tanki-main', 'tankiLoadMore', $load_more );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'tanki_enqueue_assets' );
@@ -253,3 +272,4 @@ require_once TANKI_THEME_DIR . '/inc/search.php';
 require_once TANKI_THEME_DIR . '/inc/customizer.php';
 require_once TANKI_THEME_DIR . '/inc/admin-duplicate.php';
 require_once TANKI_THEME_DIR . '/inc/demo-content.php';
+require_once TANKI_THEME_DIR . '/inc/ajax-load-more.php';

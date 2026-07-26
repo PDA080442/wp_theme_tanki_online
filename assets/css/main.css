@@ -27,6 +27,7 @@
 /* Fluid root size like tankionline.com — rem UI scales with viewport. */
 html {
 	font-size: 16px;
+	overflow-x: clip;
 }
 
 @media screen and (max-width: 1680px) {
@@ -81,6 +82,7 @@ body {
 	line-height: 1.5;
 	color: var(--tanki-text);
 	background: var(--tanki-bg);
+	overflow-x: clip;
 }
 
 a {
@@ -862,8 +864,8 @@ html.is-search-open body {
 .news-feed__grid {
 	display: grid;
 	width: 100%;
-	grid-template-columns: repeat(3, minmax(0, 1fr));
-	gap: 3rem 1.5rem;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 2.5rem 1.25rem;
 }
 
 .news-card {
@@ -973,6 +975,7 @@ html.is-search-open body {
 
 .news-card__title {
 	margin: 0;
+	min-height: calc(1.125rem * 1.22 * 2);
 	font-size: 1.125rem;
 	font-weight: 500;
 	line-height: 122%;
@@ -990,25 +993,34 @@ html.is-search-open body {
 	margin-top: 2.5rem;
 }
 
+.js .news-feed__pagination {
+	display: none;
+}
+
 .news-feed__pagination .nav-links {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 0.5rem;
 	justify-content: center;
+	align-items: center;
 }
 
 .news-feed__pagination .page-numbers {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	min-width: 2.25rem;
-	height: 2.25rem;
-	padding: 0 0.65rem;
+	min-width: 2.5rem;
+	height: 2.5rem;
+	padding: 0 0.75rem;
 	border: 1px solid var(--tanki-border);
-	border-radius: 6px;
+	border-radius: 6.25rem;
 	color: var(--tanki-text);
 	text-decoration: none;
 	font-size: 0.875rem;
+	font-weight: 500;
+	letter-spacing: 0.02em;
+	text-transform: uppercase;
+	transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
 }
 
 .news-feed__pagination .page-numbers.current,
@@ -1016,6 +1028,68 @@ html.is-search-open body {
 	border-color: var(--tanki-accent);
 	color: var(--tanki-accent);
 	text-decoration: none;
+}
+
+.news-feed__pagination .page-numbers.dots {
+	border-color: transparent;
+	min-width: 1.5rem;
+	padding: 0;
+}
+
+.news-feed__load-more {
+	display: none;
+	justify-content: center;
+	margin: 3rem 0 8rem;
+}
+
+.js .news-feed__load-more {
+	display: flex;
+}
+
+.news-feed__load-more-btn {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	height: 3rem;
+	padding: 1rem 2.25rem;
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	border-radius: 6.25rem;
+	background: transparent;
+	color: var(--tanki-bg);
+	font: inherit;
+	font-size: 0.875rem;
+	font-weight: 500;
+	line-height: 0.875rem;
+	letter-spacing: 0.02em;
+	text-transform: uppercase;
+	cursor: pointer;
+	z-index: 0;
+	transition: opacity 0.15s ease;
+}
+
+.news-feed__load-more-btn::before {
+	content: "";
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 100%;
+	height: 100%;
+	border-radius: 6.25rem;
+	background: #fff;
+	transform: translate(-50%, -50%) scaleX(0.97) scaleY(0.9);
+	transition: transform 0.15s ease;
+	z-index: -1;
+}
+
+.news-feed__load-more-btn:hover::before {
+	transform: translate(-50%, -50%);
+}
+
+.news-feed__load-more-btn:disabled {
+	opacity: 0.5;
+	cursor: wait;
+	pointer-events: none;
 }
 
 .no-posts {
@@ -1390,6 +1464,12 @@ html.is-search-open body {
 
 /* —— Responsive —— */
 
+@media (max-width: 1200px) {
+	.news-feed__grid {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
 @media (max-width: 1000px) {
 	.news-feed__grid {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1518,7 +1598,7 @@ html.is-search-open body {
 	}
 }
 
-@media (max-width: 640px) {
+@media (max-width: 600px) {
 	.news-feed__grid {
 		grid-template-columns: 1fr;
 		gap: 1rem;

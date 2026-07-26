@@ -70,6 +70,7 @@ function tanki_setup() {
 		array(
 			'primary'  => __( 'Главное меню (слева)', 'tanki-online-news' ),
 			'external' => __( 'Внешние ссылки (справа)', 'tanki-online-news' ),
+			'footer'   => __( 'Меню футера', 'tanki-online-news' ),
 		)
 	);
 }
@@ -134,6 +135,29 @@ function tanki_external_menu_fallback() {
 				<a class="site-nav__link site-nav__link--external" href="#">
 					<?php echo esc_html( $label ); ?>
 				</a>
+			</li>
+		<?php endforeach; ?>
+	</ul>
+	<?php
+}
+
+/**
+ * Fallback for the footer menu location.
+ * Used only when no menu is assigned in Appearance → Menus.
+ */
+function tanki_footer_menu_fallback() {
+	$items = array(
+		__( 'Скачать игру', 'tanki-online-news' ),
+		__( 'Правила игры', 'tanki-online-news' ),
+		__( 'Лицензионное соглашение', 'tanki-online-news' ),
+		__( 'Политика конфиденциальности и cookies', 'tanki-online-news' ),
+		__( 'Документация', 'tanki-online-news' ),
+	);
+	?>
+	<ul class="site-footer__menu-list">
+		<?php foreach ( $items as $label ) : ?>
+			<li class="site-footer__menu-item">
+				<a class="site-footer__menu-link" href="#"><?php echo esc_html( $label ); ?></a>
 			</li>
 		<?php endforeach; ?>
 	</ul>
@@ -210,3 +234,4 @@ add_action( 'wp_enqueue_scripts', 'tanki_enqueue_assets' );
 require_once TANKI_THEME_DIR . '/inc/cpt.php';
 require_once TANKI_THEME_DIR . '/inc/taxonomies.php';
 require_once TANKI_THEME_DIR . '/inc/query.php';
+require_once TANKI_THEME_DIR . '/inc/customizer.php';

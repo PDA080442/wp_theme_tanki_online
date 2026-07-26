@@ -1,0 +1,85 @@
+/**
+ * Tanki Online News — main styles.
+ */
+
+:root {
+	--tanki-bg: #0d1117;
+	--tanki-surface: #161b22;
+	--tanki-text: #f0f6fc;
+	--tanki-muted: #8b949e;
+	--tanki-accent: #f5a623;
+	--tanki-border: #30363d;
+	--tanki-container: 1120px;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	font-size: 16px;
+	line-height: 1.6;
+	color: var(--tanki-text);
+	background: var(--tanki-bg);
+}
+
+a {
+	color: var(--tanki-accent);
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.site-header,
+.site-footer {
+	background: var(--tanki-surface);
+	border-block: 1px solid var(--tanki-border);
+}
+
+.site-header__inner,
+.site-footer__inner,
+.site-main {
+	max-width: var(--tanki-container);
+	margin-inline: auto;
+	padding: 1rem 1.5rem;
+}
+
+.site-header__brand {
+	font-weight: 700;
+	color: var(--tanki-text);
+}
+
+.custom-logo-link {
+	display: inline-flex;
+	align-items: center;
+}
+
+.custom-logo {
+	max-height: 56px;
+	width: auto;
+}
+
+.post-card {
+	padding: 1.25rem 0;
+	border-bottom: 1px solid var(--tanki-border);
+}
+
+.post-card__title {
+	margin: 0 0 0.5rem;
+	font-size: 1.5rem;
+}
+
+.post-card__date {
+	color: var(--tanki-muted);
+	font-size: 0.875rem;
+}
+
+.no-posts {
+	padding: 2rem 0;
+}

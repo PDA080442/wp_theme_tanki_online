@@ -20,9 +20,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <header class="site-header">
 	<div class="site-header__inner">
-		<a class="site-header__brand" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-			<?php bloginfo( 'name' ); ?>
-		</a>
+		<?php if ( has_custom_logo() ) : ?>
+			<?php the_custom_logo(); ?>
+		<?php else : ?>
+			<a class="site-header__brand" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+				<?php bloginfo( 'name' ); ?>
+			</a>
+		<?php endif; ?>
 	</div>
 </header>
 

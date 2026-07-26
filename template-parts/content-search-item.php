@@ -26,7 +26,7 @@ if ( '' === trim( wp_strip_all_tags( $excerpt ) ) ) {
 		</time>
 		<span class="search-item__type"><?php echo esc_html( tanki_uppercase( $type_label ) ); ?></span>
 	</div>
-	<a class="search-item__link" href="<?php the_permalink(); ?>">
+	<a class="search-item__link" href="<?php the_permalink(); ?>" target="_blank" rel="noopener noreferrer">
 		<h2 class="search-item__title"><?php the_title(); ?></h2>
 	</a>
 	<?php if ( $excerpt ) : ?>

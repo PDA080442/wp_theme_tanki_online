@@ -218,6 +218,17 @@ function tanki_enqueue_assets() {
 		);
 	}
 
+	$single_css_path = TANKI_THEME_DIR . '/assets/css/single.css';
+
+	if ( file_exists( $single_css_path ) && is_singular( 'tanki_news' ) ) {
+		wp_enqueue_style(
+			'tanki-single',
+			TANKI_THEME_URI . '/assets/css/single.css',
+			array( 'tanki-main' ),
+			tanki_asset_version( 'assets/css/single.css' )
+		);
+	}
+
 	$main_js_path = TANKI_THEME_DIR . '/assets/js/main.js';
 
 	if ( file_exists( $main_js_path ) ) {

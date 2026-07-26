@@ -91,6 +91,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 	</div>
 
+	<?php if ( ! is_singular( 'tanki_news' ) ) : ?>
 	<div class="site-header__search-row">
 		<button
 			type="button"
@@ -102,6 +103,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<span class="site-header__open-search-label"><?php esc_html_e( 'Найти новость', 'tanki-online-news' ); ?></span>
 		</button>
 	</div>
+	<?php endif; ?>
 </header>
 
 <?php get_template_part( 'template-parts/search', 'overlay' ); ?>

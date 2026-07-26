@@ -321,4 +321,5 @@ require_once TANKI_THEME_DIR . '/inc/search.php';
 require_once TANKI_THEME_DIR . '/inc/customizer.php';
 require_once TANKI_THEME_DIR . '/inc/admin-duplicate.php';
 require_once TANKI_THEME_DIR . '/inc/demo-content.php';
+require_once TANKI_THEME_DIR . '/inc/wp-cli.php';
 require_once TANKI_THEME_DIR . '/inc/ajax-load-more.php';

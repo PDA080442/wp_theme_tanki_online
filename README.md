@@ -72,6 +72,7 @@ ln -s "/path/to/wp_theme_tanki_online" \
 | `--tanki-card-bg-alt` | `#0a3040` | градиент placeholder |
 | `--tanki-text` | `#ffffff` | основной текст |
 | `--tanki-muted` / `--tanki-meta` | `#9bb0ba` | дата, метки типов, вторичный текст |
+| `--tanki-meta-feed` | `rgba(255,255,255,.5)` | мета в карточках ленты (как референс) |
 | `--tanki-accent` / `--tanki-link` | `#76ff33` | акцент, ссылки, CTA |
 | `--tanki-on-accent` | `#001926` | текст на зелёном фоне |
 | `--tanki-border` | `rgba(255,255,255,.25)` | разделители |
@@ -80,6 +81,7 @@ ln -s "/path/to/wp_theme_tanki_online" \
 | `--tanki-overlay` | `rgba(0,0,0,.95)` | модалка поиска |
 | `--tanki-surface-elevated` | `#414965` | выпадающие меню |
 | `--tanki-fill-light` | `#ffffff` | белая подложка pill-кнопок |
+| `--tanki-feed-pad-x` | `6rem` | горизонтальные отступы ленты и search-row |
 
 ### Шрифт
 
@@ -151,6 +153,6 @@ wp_theme_tanki_online/
 - [x] Каркас темы, стили, README
 - [x] Кастомный тип записи «Новости» (`tanki_news`, архив `/news/`)
 - [x] Таксономия типов (Новость / Видео)
-- [x] Лента: `/` и `/news/`, сетка **4** колонки, **12** на страницу + «Загрузить ещё» (демо 16)
+- [x] Лента: `/` и `/news/`, сетка **3** колонки (desktop, как референс), **12** на страницу + «Загрузить ещё» (демо 16)
 - [x] Шапка / футер / поиск
 - [ ] Single, «Загрузить ещё», polish

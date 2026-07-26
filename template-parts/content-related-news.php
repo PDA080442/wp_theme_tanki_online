@@ -33,8 +33,9 @@ if ( ! $related->have_posts() ) {
 ?>
 <section class="post-related">
 	<h2 class="post-related__title"><?php esc_html_e( 'Новости и события', 'tanki-online-news' ); ?></h2>
-	<div class="post-related__scroller">
-		<div class="post-related__inner">
+	<div class="post-related__viewport" data-tanki-carousel>
+		<button type="button" class="post-related__nav post-related__nav--prev is-disabled" data-tanki-carousel-prev aria-label="<?php esc_attr_e( 'Предыдущие новости', 'tanki-online-news' ); ?>"></button>
+		<div class="post-related__scroller" data-tanki-carousel-track>
 			<?php
 			while ( $related->have_posts() ) :
 				$related->the_post();
@@ -51,5 +52,6 @@ if ( ! $related->have_posts() ) {
 				</div>
 			</a>
 		</div>
+		<button type="button" class="post-related__nav post-related__nav--next" data-tanki-carousel-next aria-label="<?php esc_attr_e( 'Следующие новости', 'tanki-online-news' ); ?>"></button>
 	</div>
 </section>

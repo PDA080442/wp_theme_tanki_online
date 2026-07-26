@@ -258,6 +258,7 @@ function tanki_enqueue_assets() {
 			global $wp_query;
 			$load_more['currentPage'] = max( 1, (int) get_query_var( 'paged' ), (int) get_query_var( 'page' ) );
 			$load_more['maxPages']    = isset( $wp_query->max_num_pages ) ? (int) $wp_query->max_num_pages : 1;
+			$load_more['newsType']    = tanki_get_feed_news_type_filter();
 		}
 
 		wp_localize_script( 'tanki-main', 'tankiLoadMore', $load_more );

@@ -1,0 +1,15 @@
+/*
+Theme Name: Tanki Online News
+Theme URI: https://tankionline.com/ru/news/
+Description: Новостной блог в духе Tanki Online. Кастомный тип записи «Новости», лента, поиск, шапка и футер.
+Author: Danil Popravkin
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 6.8
+Requires PHP: 8.1
+Text Domain: tanki-online-news
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+*/
+
+/* Базовые стили темы — основная вёрстка будет в assets/css/main.css */

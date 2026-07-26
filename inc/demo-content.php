@@ -177,6 +177,7 @@ function tanki_get_demo_news_content_data() {
 				'Собирайте бонусы, улучшайте показатели и соревнуйтесь с друзьями за место в таблице лидеров.',
 			),
 			'closing'       => 'Событие активно до <strong>05:00 МСК 20 августа</strong>. Награды начнут выдаваться после подведения итогов.',
+			'long_form'     => true,
 		),
 		'03-summer-sport'   => array(
 			'callout_title' => 'Летние спортивные игры возвращаются в Танки Онлайн!',
@@ -336,6 +337,44 @@ function tanki_get_demo_news_content_data() {
 }
 
 /**
+ * Extra rich HTML for long-form demo post verification (lists, quote, figure).
+ *
+ * @param string $image_url Image URL for inline figure.
+ * @param string $image_alt Alt text.
+ * @return string
+ */
+function tanki_build_demo_long_form_content( $image_url, $image_alt ) {
+	$figure = '';
+
+	if ( $image_url ) {
+		$figure = sprintf(
+			'<figure class="aligncenter"><img src="%1$s" alt="%2$s" loading="lazy" decoding="async"><figcaption>%2$s — неоновый маршрут мини-игры</figcaption></figure>',
+			esc_url( $image_url ),
+			esc_attr( $image_alt )
+		);
+	}
+
+	$html  = '<h2>Как проходить мини-игру</h2>';
+	$html .= '<p>Каждый день открываются новые участки маршрута. Собирайте энергию, избегайте ловушек и используйте ускорители, чтобы улучшить время прохождения.</p>';
+	$html .= '<p>Основные этапы сезона:</p>';
+	$html .= '<ul>';
+	$html .= '<li>Разведка секторов и сбор бонусных ячеек</li>';
+	$html .= '<li>Прохождение испытаний на скорость и точность</li>';
+	$html .= '<li>Финальный рывок к таблице лидеров</li>';
+	$html .= '</ul>';
+	$html .= '<ol>';
+	$html .= '<li>Зайдите в раздел событий в клиенте</li>';
+	$html .= '<li>Выберите «Кибертанк 2026» и начните забег</li>';
+	$html .= '<li>Заберите награды после завершения этапа</li>';
+	$html .= '</ol>';
+	$html .= '<blockquote><p><em>«Кибертанк»</em> — это не только скорость, но и тактика: иногда выгоднее объехать препятствие, чем пытаться прорваться через него.</p></blockquote>';
+	$html .= $figure;
+	$html .= '<p>Подробности и таблица лидеров обновляются в режиме реального времени — следите за анонсами в <strong>новостной ленте</strong>.</p>';
+
+	return $html;
+}
+
+/**
  * Build post HTML matching the reference single-news layout.
  *
  * @param array  $item      Demo item from tanki_get_demo_news_items().
@@ -387,6 +426,11 @@ function tanki_build_demo_news_content( $item, $image_url = '' ) {
 	$html .= sprintf( '<div class="base-card-content">%s</div>', $feature_paragraphs );
 	$html .= '</div></div>';
 	$html .= sprintf( '<p>%s</p>', wp_kses_post( $closing ) );
+
+	if ( ! empty( $data['long_form'] ) ) {
+		$html .= tanki_build_demo_long_form_content( $image_url, $image_alt );
+	}
+
 	$html .= sprintf(
 		'<a class="forum-link" href="%1$s" target="_blank" rel="noopener noreferrer">%2$s</a>',
 		esc_url( $forum_url ),

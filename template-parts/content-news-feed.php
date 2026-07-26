@@ -40,7 +40,7 @@ $filter_links = array(
 		<h1 class="news-feed__title screen-reader-text"><?php echo esc_html( $feed_title ); ?></h1>
 	</header>
 
-	<nav class="news-feed__filters" aria-label="<?php esc_attr_e( 'Фильтр по типу новости', 'tanki-online-news' ); ?>">
+	<nav class="news-feed__filters screen-reader-text" aria-label="<?php esc_attr_e( 'Фильтр по типу новости', 'tanki-online-news' ); ?>">
 		<?php foreach ( $filter_links as $slug => $link ) : ?>
 			<a
 				class="news-feed__filter<?php echo $news_type === $slug ? ' is-active' : ''; ?>"

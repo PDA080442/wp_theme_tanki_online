@@ -51,7 +51,7 @@
 		});
 
 		document.addEventListener('click', function (event) {
-			if (!header.contains(event.target)) {
+			if (header.classList.contains('is-menu-open') && !header.contains(event.target)) {
 				closeMenu();
 			}
 		});

@@ -171,8 +171,20 @@ function tanki_footer_menu_fallback() {
  * @return string
  */
 function tanki_get_news_date_label( $post_id = null ) {
+	$post_id = $post_id ? (int) $post_id : get_the_ID();
+
+	if ( ! $post_id ) {
+		return '';
+	}
+
+	$timestamp = get_post_timestamp( $post_id );
+
+	if ( false === $timestamp ) {
+		return '';
+	}
+
 	// Like reference: «23 июля, 2026» / «09 июля, 2026» (day padded), then CSS uppercases.
-	return get_the_date( 'd F, Y', $post_id );
+	return wp_date( 'd F, Y', $timestamp );
 }
 
 /**
@@ -215,6 +227,17 @@ function tanki_enqueue_assets() {
 			TANKI_THEME_URI . '/assets/css/main.css',
 			array( 'tanki-style' ),
 			tanki_asset_version( 'assets/css/main.css' )
+		);
+	}
+
+	$single_css_path = TANKI_THEME_DIR . '/assets/css/single.css';
+
+	if ( file_exists( $single_css_path ) && is_singular( 'tanki_news' ) ) {
+		wp_enqueue_style(
+			'tanki-single',
+			TANKI_THEME_URI . '/assets/css/single.css',
+			array( 'tanki-main' ),
+			tanki_asset_version( 'assets/css/single.css' )
 		);
 	}
 

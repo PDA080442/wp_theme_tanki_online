@@ -18,7 +18,7 @@ $is_video = has_term( 'video', 'news_type' );
 $card_class = $is_video ? 'news-card news-card--video' : 'news-card';
 ?>
 <article <?php post_class( $card_class ); ?> id="post-<?php the_ID(); ?>">
-	<a class="news-card__link" href="<?php echo esc_url( get_permalink() ); ?>">
+	<a class="news-card__link" href="<?php echo esc_url( get_permalink() ); ?>" target="_blank" rel="noopener noreferrer">
 		<div class="news-card__image">
 			<div class="news-card__filler" aria-hidden="true"></div>
 			<div class="news-card__image-wrap">

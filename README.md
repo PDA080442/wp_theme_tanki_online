@@ -86,4 +86,5 @@ wp_theme_tanki_online/
 - [x] Кастомный тип записи «Новости» (`tanki_news`, архив `/news/`)
 - [x] Таксономия типов (Новость / Видео)
 - [x] Архив и ЧПУ: 12 постов на странице, главная = `tanki_news`
+- [x] CRUD / права CPT: чеклист в [`docs/.../Checking_CRUD_and_access_rights/`](docs/Custom_post_type_and_taxonomies/Checking_CRUD_and_access_rights/)
 - [ ] 16 постов, лента, поиск, шапка, футер

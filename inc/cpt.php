@@ -78,6 +78,15 @@ add_action( 'init', 'tanki_register_news_post_type' );
  */
 function tanki_flush_rewrite_rules_on_switch() {
 	tanki_register_news_post_type();
+
+	if ( function_exists( 'tanki_register_news_type_taxonomy' ) ) {
+		tanki_register_news_type_taxonomy();
+	}
+
+	if ( function_exists( 'tanki_ensure_news_type_terms' ) ) {
+		tanki_ensure_news_type_terms();
+	}
+
 	flush_rewrite_rules();
 }
 add_action( 'after_switch_theme', 'tanki_flush_rewrite_rules_on_switch' );

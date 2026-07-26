@@ -63,18 +63,19 @@ wp_theme_tanki_online/
 │   └── js/
 ├── template-parts/
 ├── inc/
-│   └── cpt.php          # кастомный тип записи «Новости» (tanki_news)
+│   ├── cpt.php          # кастомный тип записи «Новости» (tanki_news)
+│   └── taxonomies.php   # таксономия типов (Новость / Видео)
 └── docs/
 ```
 
 ## Документация
 
 - Эпик окружения: [`docs/Theme_environment_and_frame/`](docs/Theme_environment_and_frame/)
-- CPT «Новости»: [`docs/Custom_post_type_and_taxonomies/`](docs/Custom_post_type_and_taxonomies/)
+- CPT и таксономии: [`docs/Custom_post_type_and_taxonomies/`](docs/Custom_post_type_and_taxonomies/)
 
 ## Статус
 
 - [x] Каркас темы, стили, README
 - [x] Кастомный тип записи «Новости» (`tanki_news`, архив `/news/`)
-- [ ] Таксономия типов (Новость / Видео)
+- [x] Таксономия типов (Новость / Видео)
 - [ ] 16 постов, лента, поиск, шапка, футер

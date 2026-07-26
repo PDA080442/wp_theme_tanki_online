@@ -171,8 +171,20 @@ function tanki_footer_menu_fallback() {
  * @return string
  */
 function tanki_get_news_date_label( $post_id = null ) {
+	$post_id = $post_id ? (int) $post_id : get_the_ID();
+
+	if ( ! $post_id ) {
+		return '';
+	}
+
+	$timestamp = get_post_timestamp( $post_id );
+
+	if ( false === $timestamp ) {
+		return '';
+	}
+
 	// Like reference: «23 июля, 2026» / «09 июля, 2026» (day padded), then CSS uppercases.
-	return get_the_date( 'd F, Y', $post_id );
+	return wp_date( 'd F, Y', $timestamp );
 }
 
 /**

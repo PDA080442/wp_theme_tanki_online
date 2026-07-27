@@ -154,3 +154,22 @@ wp_theme_tanki_online/
 **Внешний вид → Настроить → Футер**.
 
 - **Заглушки меню:** если меню не назначены, пункты Скины, Медиа, Киберспорт, Вики, Форум и ссылки футера ведут на `#`.
+
+## Сдача
+
+**Репозиторий:** [github.com/PDA080442/wp_theme_tanki_online](https://github.com/PDA080442/wp_theme_tanki_online)
+
+**Версия темы:** 1.0.0 (`style.css`, константа `TANKI_THEME_VERSION` в `functions.php`).
+
+### Zip-архив темы
+
+
+```bash
+git archive --format=zip HEAD -o tanki-online-news.zip
+```
+
+Распаковать и положить папку как:
+
+```
+wp-content/themes/tanki-online-news/
+```

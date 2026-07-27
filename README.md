@@ -146,6 +146,15 @@ Line-height: `--tanki-leading-tight` (1.2), `--tanki-leading-normal` (1.5), `--t
 
 `body` использует многослойный radial-gradient на токенах (`--tanki-accent-glow`, `--tanki-glow-cyan`) поверх `--tanki-bg` — не плоский одноцветный фон.
 
+## EP8 — Adaptive quality
+
+| Task | Статус | Документация |
+|------|--------|--------------|
+| 1 — Adaptive layout + 18 demo posts | ✅ | *(см. коммиты Task 1)* |
+| 2 — Basic accessibility and semantics | ✅ | [docs/Adaptive_quality/Basic_accessibility_and_semantics/](docs/Adaptive_quality/Basic_accessibility_and_semantics/) |
+
+Task 2: landmarks с RU `aria-label`, alt декоративных img, `:focus-visible` для search/popup/footer/single, label/submit поиска, `aria-expanded`/`aria-controls` бургера, tab-QA.
+
 ## Структура темы
 
 ```

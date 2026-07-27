@@ -1,6 +1,6 @@
 <?php
 /**
- * Demo news content (16 posts with images from assets/demo/news).
+ * Demo news content (18 posts with images from assets/demo/news).
  *
  * @package Tanki_Online_News
  */
@@ -143,6 +143,22 @@ function tanki_get_demo_news_items() {
 			'type'    => 'video',
 			'image'   => '16-videoblog-549.jpg',
 			'excerpt' => 'Свежий выпуск видеоблога с обзором событий.',
+		),
+		array(
+			'slug'    => '17-gold-rush',
+			'title'   => 'Золотая лихорадка 2026',
+			'date'    => '2026-06-03 12:00:00',
+			'type'    => 'novost',
+			'image'   => '17-gold-rush.jpg',
+			'excerpt' => 'Событие «Золотая лихорадка» — добывайте золото и обменивайте на награды.',
+		),
+		array(
+			'slug'    => '18-skin-week',
+			'title'   => 'Неделя скинов: коллекция «Neon Drive»',
+			'date'    => '2026-06-02 12:00:00',
+			'type'    => 'novost',
+			'image'   => '18-skin-week.jpg',
+			'excerpt' => 'Специальная неделя скинов с тематической коллекцией Neon Drive.',
 		),
 	);
 }
@@ -333,6 +349,28 @@ function tanki_get_demo_news_content_data() {
 			),
 			'closing'       => 'Новый выпуск уже на канале — включайте и делитесь с командой.',
 		),
+		'17-gold-rush'      => array(
+			'callout_title' => 'Золотая лихорадка 2026 уже в игре!',
+			'callout_lead'  => 'Добывайте золото в боях и обменивайте его на ценные награды.',
+			'body'          => 'Событие возвращается с обновлённым списком призов и дополнительными заданиями для активных игроков.',
+			'feature_title' => 'Золотая лихорадка',
+			'feature_body'  => array(
+				'За каждую победу и выполненное задание начисляются золотые слитки — копите их для обмена в магазине события.',
+				'В финале недели откроется специальный лот с редким элементом коллекции.',
+			),
+			'closing'       => 'Событие активно до <strong>05:00 МСК 10 июня</strong>. Успейте забрать все награды!',
+		),
+		'18-skin-week'      => array(
+			'callout_title' => 'Неделя скинов: коллекция «Neon Drive»!',
+			'callout_lead'  => 'Светящиеся облики в неоновом стиле доступны ограниченное время.',
+			'body'          => 'Каждый день недели открывается новый скин из линейки — следите за расписанием в клиенте.',
+			'feature_title' => 'Neon Drive',
+			'feature_body'  => array(
+				'Коллекция вдохновлена ночными трассами и неоновыми огнями мегаполиса будущего.',
+				'Соберите полный набор, чтобы получить бонусный камуфляж для всего экипажа.',
+			),
+			'closing'       => 'Неделя скинов продлится до <strong>05:00 МСК 9 июня</strong>. Не пропустите понравившиеся облики!',
+		),
 	);
 }
 
@@ -515,7 +553,7 @@ function tanki_import_demo_news_image( $filename, $post_id = 0 ) {
 }
 
 /**
- * Create or refresh 16 demo tanki_news posts with featured images.
+ * Create or refresh 18 demo tanki_news posts with featured images.
  *
  * @param bool $replace_all Delete existing tanki_news before seeding.
  * @return array{created:int,updated:int,skipped:int}
@@ -652,7 +690,7 @@ function tanki_render_demo_news_tools_page() {
 	?>
 	<div class="wrap">
 		<h1><?php esc_html_e( 'Демо-новости', 'tanki-online-news' ); ?></h1>
-		<p><?php esc_html_e( 'Загружает 16 новостей с обложками и контентом по структуре референса (callout, feature-блок, кнопка форума). Повторный запуск обновит существующие демо-посты по slug — дубликаты не создаются.', 'tanki-online-news' ); ?></p>
+		<p><?php esc_html_e( 'Загружает 18 новостей с обложками и контентом по структуре референса (callout, feature-блок, кнопка форума). Повторный запуск обновит существующие демо-посты по slug — дубликаты не создаются.', 'tanki-online-news' ); ?></p>
 		<p><strong><?php esc_html_e( 'Внимание:', 'tanki-online-news' ); ?></strong> <?php esc_html_e( 'опция «Удалить все текущие новости» удалит каждую запись tanki_news, в том числе созданную вручную, а не только демо.', 'tanki-online-news' ); ?></p>
 		<?php if ( $message ) : ?>
 			<div class="notice notice-success is-dismissible"><p><?php echo esc_html( $message ); ?></p></div>
@@ -665,7 +703,7 @@ function tanki_render_demo_news_tools_page() {
 					<?php esc_html_e( 'Удалить все текущие новости перед загрузкой', 'tanki-online-news' ); ?>
 				</label>
 			</p>
-			<?php submit_button( __( 'Загрузить 16 демо-новостей', 'tanki-online-news' ), 'primary', 'tanki_seed_demo_news' ); ?>
+			<?php submit_button( __( 'Загрузить 18 демо-новостей', 'tanki-online-news' ), 'primary', 'tanki_seed_demo_news' ); ?>
 		</form>
 	</div>
 	<?php

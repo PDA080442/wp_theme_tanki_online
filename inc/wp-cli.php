@@ -19,7 +19,7 @@ if ( ! defined( 'WP_CLI' ) || ! WP_CLI ) {
 class Tanki_Seed_Demo_News_Command {
 
 	/**
-	 * Create or refresh 16 demo news posts (CPT, taxonomy, featured images).
+	 * Create or refresh 18 demo news posts (CPT, taxonomy, featured images).
 	 *
 	 * ## OPTIONS
 	 *

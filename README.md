@@ -8,16 +8,9 @@
 
 **Референс дизайна и контента:** [tankionline.com/ru/news](https://tankionline.com/ru/news/)
 
-## Стек
-- WordPress
-- PHP
-- HTML / CSS / JavaScript
+**Стек:** WordPress 6+, PHP 8.1+, HTML / CSS / JavaScript (vanilla, без jQuery).
 
-## Требования
-
-WordPress 6+
-PHP 8.1+
-LocalWP [Local](https://localwp.com/)
+Стили и CSS-переменные — в [`assets/css/main.css`](assets/css/main.css) и [`assets/css/single.css`](assets/css/single.css).
 
 ## Установка
 
@@ -28,8 +21,8 @@ LocalWP [Local](https://localwp.com/)
    wp-content/themes/tanki-online-news/
    ```
 
-3. В админке: **Внешний вид → Темы → активировать «Tanki Online News»**.
-4. **Настройки → Постоянные ссылки → «Название записи» → Сохранить**.
+3. **Внешний вид → Темы → Tanki Online News → Активировать**.
+4. **Настройки → Постоянные ссылки → «Название записи» → Сохранить** (обязательно для URL вида `/news/...`).
 
 ### Локальная разработка (симлинк)
 
@@ -42,10 +35,18 @@ ln -s "/path/to/wp_theme_tanki_online" \
 
 Подставь свой путь к клону репозитория вместо `/path/to/wp_theme_tanki_online`.
 
+## Быстрая проверка 
 
-Меню шапки: **Внешний вид → Меню** — назначь меню в области **«Главное меню (слева)»** и **«Внешние ссылки (справа)»**. Пока не назначено, показываются запасные пункты.
+1. Установить Local, создать сайт.
+2. Скопировать тему в `wp-content/themes/tanki-online-news/`.
+3. Активировать тему **Tanki Online News**.
+4. Сохранить постоянные ссылки (**«Название записи»**).
+5. Загрузить демо-контент — способ A или B (см. раздел ниже).
+6. Открыть `{домен}/` — на первой странице **12 карточек**, кнопка **«Загрузить ещё»** добавляет **6** (итого **18**).
+7. Клик по любой карточке — single-страница открывается.
+8. Кнопка **«Найти новость»** в шапке.
 
-Футер: меню в области **«Меню футера»**; картинки маскота и логотипа партнёра — **Внешний вид → Настроить → Футер**.
+Пример `{домен}`: `http://tanki-online-news.local`.
 
 ## Демо-контент (18 новостей)
 
@@ -85,102 +86,71 @@ wp --path="/path/to/wordpress" tanki seed-demo-news
 
 Если обложки не подтянулись — используйте способ A (обложки берутся из `assets/demo/news/`).
 
-### Идемпотентность
 
-- **Повторный сид без флагов:** обновляет те же 18 постов по meta `_tanki_demo_slug`, дубликаты не создаются.
-- **`--replace-all` / чекбокс в админке:** полная очистка CPT `tanki_news` перед загрузкой.
-
-### Проверка
-
-Откройте `/` или `/news/` — 18 карточек в ленте; «Загрузить ещё» добавляет 6; каждая single-страница открывается без 404.
+## Админка WordPress
 
 
-### Цвета
+Кастомный тип «Новости» - Боковое меню → **Новости**
+Список записей - **Новости → Все новости**
+Добавить запись - **Новости → Добавить**
+Таксономия типов - В редакторе новости — метабокс **Типы**; также **Новости → Типы**
+Сидер демо - **Инструменты → Демо-новости**
 
-| Токен | Значение | Использование |
-|-------|----------|---------------|
-| `--tanki-bg` | `#001926` | базовый фон страницы |
-| `--tanki-surface` | `#012233` | панели, превью single, футер |
-| `--tanki-card-bg` | `#0a2a38` | фон карточек, image-wrap |
-| `--tanki-card-bg-alt` | `#0a3040` | градиент placeholder |
-| `--tanki-text` | `#ffffff` | основной текст |
-| `--tanki-muted` / `--tanki-meta` | `#9bb0ba` | дата, метки типов, вторичный текст |
-| `--tanki-meta-feed` | `rgba(255,255,255,.5)` | мета в карточках ленты |
-| `--tanki-accent` / `--tanki-link` | `#76ff33` | акцент, ссылки, CTA |
-| `--tanki-on-accent` | `#001926` | текст на зелёном фоне |
-| `--tanki-border` | `rgba(255,255,255,.25)` | разделители |
-| `--tanki-border-strong` | `rgba(255,255,255,.5)` | outline кнопок |
-| `--tanki-border-subtle` | `rgba(255,255,255,.15)` | тонкие границы карточек |
-| `--tanki-overlay` | `rgba(0,0,0,.95)` | модалка поиска |
-| `--tanki-surface-elevated` | `#414965` | выпадающие меню |
-| `--tanki-fill-light` | `#ffffff` | белая подложка pill-кнопок |
-| `--tanki-feed-pad-x` | `6rem` | горизонтальные отступы ленты и search-row |
-
-### Шрифт
-
-- **Rubik** (Google Fonts), 400 / 500 / 700
-- `--tanki-font-weight-normal`, `--medium`, `--bold`
-- Fluid `html { font-size }` масштабирует rem под viewport 
-
-### Типографическая шкала
-
-| Токен | rem | Назначение |
-|-------|-----|------------|
-| `--tanki-text-xs` | 0.75 | мета, метки типов |
-| `--tanki-text-sm` | 0.875 | кнопки, вторичный текст |
-| `--tanki-text-base` | 1 | body |
-| `--tanki-text-lg` | 1.125 | заголовки карточек, h3 |
-| `--tanki-text-xl` | 1.5 | h2 в prose, mobile h1 |
-| `--tanki-text-2xl` | 2.25 | h1 single |
-| `--tanki-text-display` | clamp | заголовки разделов |
-
-Line-height: `--tanki-leading-tight` (1.2), `--tanki-leading-normal` (1.5), `--tanki-leading-snug` (1.22), `--tanki-leading-prose` (1.625).
-
-### Кнопки и ссылки
-
-- **Ссылки:** `color: var(--tanki-link)`, hover — underline
-- **Primary:** фон `--tanki-accent`, текст `--tanki-on-accent` (help CTA, menu toggle)
-- **Outline:** прозрачный фон, текст `--tanki-accent`, border `--tanki-border-strong` (forum-link, «Загрузить ещё», nav CTA)
-
-### Фон
-
-`body` использует многослойный radial-gradient на токенах (`--tanki-accent-glow`, `--tanki-glow-cyan`) поверх `--tanki-bg` — не плоский одноцветный фон.
-
-## EP8 — Adaptive quality
-
-| Task | Статус | Документация |
-|------|--------|--------------|
-| 1 — Adaptive layout + 18 demo posts | ✅ | *(см. коммиты Task 1)* |
-| 2 — Basic accessibility and semantics | ✅ | [docs/Adaptive_quality/Basic_accessibility_and_semantics/](docs/Adaptive_quality/Basic_accessibility_and_semantics/) |
-
-Task 2: landmarks с RU `aria-label`, alt декоративных img, `:focus-visible` для search/popup/footer/single, label/submit поиска, `aria-expanded`/`aria-controls` бургера, tab-QA.
 
 ## Структура темы
 
 ```
 wp_theme_tanki_online/
-├── style.css
-├── functions.php
-├── index.php
-├── header.php
-├── footer.php
-├── screenshot.png
+├── style.css                 # метаданные темы
+├── screenshot.png            # превью в списке тем
+├── functions.php             # setup, меню, fallback-меню
+├── index.php                 # запасной шаблон
+├── header.php, footer.php    # шапка и футер
+├── searchform.php            # форма модального поиска
+├── home.php                  # главная = лента новостей
+├── archive-tanki_news.php    # архив /news/
+├── single-tanki_news.php     # одиночная новость
+├── search.php                # fallback страницы поиска
 ├── assets/
 │   ├── css/
+│   │   ├── main.css          # лента, шапка, футер, поиск
+│   │   └── single.css        # single, related, share
 │   ├── js/
-│   ├── img/
+│   │   └── main.js           # бургер, поиск, load more, related
+│   ├── img/                  # иконки, логотипы
 │   └── demo/
-│       ├── news/              # 18 обложек JPG
-│       └── tanki-news-demo.xml # WXR-экспорт (опциональный импорт)
+│       ├── news/             # 18 обложек JPG
+│       └── tanki-news-demo.xml  # WXR-экспорт (опциональный импорт)
 ├── template-parts/
-├── inc/
-│   ├── cpt.php          # кастомный тип записи «Новости» (tanki_news)
-│   ├── taxonomies.php   # таксономия типов (Новость / Видео)
-│   ├── query.php        # архив /news/ и главная: 12 постов на страницу
-│   ├── search.php       # AJAX-поиск по tanki_news
-│   ├── admin-duplicate.php # «Дублировать» новость в админке
-│   ├── demo-content.php # сидер 18 демо-новостей с обложками
-│   ├── wp-cli.php       # wp tanki seed-demo-news
-│   ├── ajax-load-more.php # AJAX «Загрузить ещё» для ленты
-│   └── customizer.php   # картинки футера (маскот, логотип партнёра)
+│   ├── content-news-feed.php      # лента, load more, пагинация
+│   ├── content-news-card.php      # карточка в сетке
+│   ├── content-single-news.php    # тело single-страницы
+│   ├── content-single-news-nav.php # prev/next на single
+│   ├── content-related-news.php   # блок «Похожие новости»
+│   ├── content-search-item.php    # строка в результатах поиска
+│   └── search-overlay.php         # модалка поиска
+└── inc/
+    ├── cpt.php               # CPT «Новости» (tanki_news)
+    ├── taxonomies.php        # таксономия news_type (Новость / Видео)
+    ├── query.php             # главная, архив, фильтры: 12 постов на страницу
+    ├── demo-content.php      # сидер 18 демо-новостей
+    ├── wp-cli.php            # команда wp tanki seed-demo-news
+    ├── search.php            # AJAX-поиск по tanki_news
+    ├── ajax-load-more.php    # AJAX «Загрузить ещё»
+    ├── admin-duplicate.php   # «Дублировать» новость в админке
+    └── customizer.php        # картинки футера (маскот, логотип партнёра)
 ```
+
+## Меню и кастомайзер
+
+**Внешний вид → Меню** — назначь меню в областях:
+
+- **Главное меню (слева)** — пункты шапки слева
+- **Внешние ссылки (справа)** — Киберспорт, Вики, Форум
+- **Меню футера** — ссылки в подвале
+
+Пока меню не назначены, показываются запасные пункты.
+
+**Внешний вид → Настроить → Футер**.
+
+- **Заглушки меню:** если меню не назначены, пункты Скины, Медиа, Киберспорт, Вики, Форум и ссылки футера ведут на `#`.

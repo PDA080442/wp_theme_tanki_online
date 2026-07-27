@@ -32,13 +32,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 							width="44"
 							height="44"
 							alt=""
+							aria-hidden="true"
 							decoding="async"
 						>
 					</a>
 				<?php endif; ?>
 			</div>
 
-			<nav class="site-nav site-nav--primary" id="site-nav" aria-label="<?php esc_attr_e( 'Primary', 'tanki-online-news' ); ?>">
+			<nav class="site-nav site-nav--primary" id="site-nav" aria-label="<?php esc_attr_e( 'Главное меню', 'tanki-online-news' ); ?>">
 				<?php
 				wp_nav_menu(
 					array(
@@ -52,7 +53,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				?>
 			</nav>
 
-			<nav class="site-nav site-nav--external" aria-label="<?php esc_attr_e( 'External', 'tanki-online-news' ); ?>">
+			<nav class="site-nav site-nav--external" id="site-nav-external" aria-label="<?php esc_attr_e( 'Внешние ссылки', 'tanki-online-news' ); ?>">
 				<?php
 				wp_nav_menu(
 					array(
@@ -79,7 +80,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					type="button"
 					class="site-header__menu-toggle"
 					id="site-menu-toggle"
-					aria-controls="site-nav"
+					aria-controls="site-nav site-nav-external"
 					aria-expanded="false"
 					aria-label="<?php esc_attr_e( 'Открыть меню', 'tanki-online-news' ); ?>"
 					data-label-open="<?php esc_attr_e( 'Открыть меню', 'tanki-online-news' ); ?>"

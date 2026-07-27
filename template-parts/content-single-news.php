@@ -29,7 +29,7 @@ $post_ts    = get_post_timestamp();
 <section class="post-single">
 	<?php if ( $thumb_url ) : ?>
 		<div class="background" aria-hidden="true">
-			<img src="<?php echo esc_url( $thumb_url ); ?>" alt="">
+			<img src="<?php echo esc_url( $thumb_url ); ?>" alt="" aria-hidden="true">
 		</div>
 	<?php endif; ?>
 

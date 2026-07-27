@@ -175,6 +175,11 @@
 	transform: scale(1.1);
 }
 
+.post-single .share-links a:focus-visible {
+	outline: 2px solid var(--tanki-accent);
+	outline-offset: 2px;
+}
+
 .post-single .share-links p {
 	margin: 0;
 	color: rgba(191, 213, 255, 0.4);
@@ -580,6 +585,11 @@
 	background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M10.9393 0.43934C11.5251 -0.146447 12.4749 -0.146447 13.0607 0.43934L23.5607 10.9393C24.1464 11.5251 24.1464 12.4749 23.5607 13.0607L13.0607 23.5607C12.4749 24.1464 11.5251 24.1464 10.9393 23.5607C10.3536 22.9749 10.3536 22.0251 10.9393 21.4393L18.8787 13.5H1.5C0.671573 13.5 0 12.8284 0 12C0 11.1716 0.671573 10.5 1.5 10.5H18.8787L10.9393 2.56066C10.3536 1.97487 10.3536 1.02513 10.9393 0.43934Z' fill='%23001926'/%3E%3C/svg%3E");
 }
 
+.post-single .content .forum-link:focus-visible {
+	outline: 2px solid var(--tanki-accent);
+	outline-offset: 2px;
+}
+
 .post-single .content a:not(.forum-link) {
 	color: var(--tanki-accent);
 	text-decoration: none;
@@ -794,6 +804,12 @@
 	text-decoration: none;
 }
 
+.post-single-nav .nav-previous a:focus-visible,
+.post-single-nav .nav-next a:focus-visible {
+	outline: 2px solid var(--tanki-accent);
+	outline-offset: 2px;
+}
+
 .post-single-nav__label {
 	font-size: var(--tanki-text-xs);
 	font-weight: var(--tanki-font-weight-medium);
@@ -890,6 +906,11 @@
 
 .post-single__archive-cta:hover::after {
 	background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M10.9393 0.43934C11.5251 -0.146447 12.4749 -0.146447 13.0607 0.43934L23.5607 10.9393C24.1464 11.5251 24.1464 12.4749 23.5607 13.0607L13.0607 23.5607C12.4749 24.1464 11.5251 24.1464 10.9393 23.5607C10.3536 22.9749 10.3536 22.0251 10.9393 21.4393L18.8787 13.5H1.5C0.671573 13.5 0 12.8284 0 12C0 11.1716 0.671573 10.5 1.5 10.5H18.8787L10.9393 2.56066C10.3536 1.97487 10.3536 1.02513 10.9393 0.43934Z' fill='%23001926'/%3E%3C/svg%3E");
+}
+
+.post-single__archive-cta:focus-visible {
+	outline: 2px solid var(--tanki-accent);
+	outline-offset: 2px;
 }
 
 @media screen and (max-width: 600px) {
@@ -1008,6 +1029,11 @@
 .post-related__nav:hover {
 	border-color: var(--tanki-accent);
 	background: rgba(118, 255, 51, 0.15);
+}
+
+.post-related__nav:focus-visible {
+	outline: 2px solid var(--tanki-accent);
+	outline-offset: 2px;
 }
 
 .post-related__nav--prev {

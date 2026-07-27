@@ -63,6 +63,7 @@ $footer_year = (int) gmdate( 'Y' );
 					width="40"
 					height="40"
 					alt=""
+					aria-hidden="true"
 					decoding="async"
 				>
 				<p class="site-footer__copy">
@@ -77,7 +78,7 @@ $footer_year = (int) gmdate( 'Y' );
 				</p>
 			</div>
 
-			<nav class="site-footer__nav" aria-label="<?php esc_attr_e( 'Footer', 'tanki-online-news' ); ?>">
+			<nav class="site-footer__nav" aria-label="<?php esc_attr_e( 'Меню футера', 'tanki-online-news' ); ?>">
 				<?php
 				wp_nav_menu(
 					array(
